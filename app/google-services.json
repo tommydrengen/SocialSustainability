@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1058043769354",
+    "project_id": "socialsustainability-dfc54",
+    "storage_bucket": "socialsustainability-dfc54.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1058043769354:android:30f07ad74a0b3c0c18a5f3",
+        "android_client_info": {
+          "package_name": "dk.thomas.socialsustainability"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1058043769354-4uc7uvqfobm46v0alh87lc9ohee2s30r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCiH_Gi0nARLaC2Z8a1KJyTuM5P523PMc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1058043769354-4uc7uvqfobm46v0alh87lc9ohee2s30r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
