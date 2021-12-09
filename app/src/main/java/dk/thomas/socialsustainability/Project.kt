@@ -1,6 +1,6 @@
 package dk.thomas.socialsustainability
 
-data class Project(var name: String ?= null, var description: String ?= null, var date: String ?= null)
+data class Project(var date: String ?= null, var description: String ?= null, var name: String ?= null)
 
 /*
 class Project{

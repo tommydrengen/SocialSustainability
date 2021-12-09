@@ -27,13 +27,13 @@
                 android:textColor="@color/black"
                 android:textSize="26sp"
                 android:textStyle="bold"
-                android:id="@+id/tvFirstName"
+                android:id="@+id/tvName"
                 />
 
             <TextView
-                android:id="@+id/tvFirstNameValue"
+                android:id="@+id/tvNameValue"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="16dp"
                 android:layout_marginStart="8dp"
                 android:text="Allan"
                 android:textColor="@color/black"
@@ -58,7 +58,7 @@
                 />
 
             <TextView
-                android:id="@+id/tvLastNameValue"
+                android:id="@+id/tvDescValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -91,7 +91,7 @@
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:id="@+id/ageVal"
+                android:id="@+id/tvDateValue"
                 android:text="01/01/2022"
                 />
 

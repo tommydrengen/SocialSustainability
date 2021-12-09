@@ -30,10 +30,11 @@ class Feed : AppCompatActivity() {
         buttonCreateActivity.setOnClickListener { startActivity(Intent(this, Create::class.java)) }
 
         //dummy data:
-        for (i in 1..10){projectArrayList.add(Project("a"+i,"a"+i, ""+1+i))}
+        EventChangeListener()
+        //for (i in 1..10){projectArrayList.add(Project("a"+i,"a"+i, ""+1+i))}
         myAdapter = MyAdapter(projectArrayList)
         recyclerView.adapter = myAdapter
-        EventChangeListener()
+        //EventChangeListener()
     }
     private fun EventChangeListener() {
         db = FirebaseFirestore.getInstance()
@@ -61,10 +62,10 @@ class Feed : AppCompatActivity() {
         //var element: View = layoutInflater.inflate(com.google.firebase.firestore.R.layout.list_item,null,false)
         var element: View = layoutInflater.inflate(R.layout.list_item,null,false)
         //var first = element.findViewById<TextView>(com.google.firebase.firestore.R.id.tvFirstNameValue)
-        var first = element.findViewById<TextView>(/*com.google.firebase.firestore.*/R.id.tvFirstName)
+        var first = element.findViewById<TextView>(/*com.google.firebase.firestore.*/R.id.tvNameValue)
 
-        var last = element.findViewById<TextView>(/*com.google.firebase.firestore.*/R.id.tvLastNameValue)
-        var age = element.findViewById<TextView>(/*com.google.firebase.firestore.*/R.id.ageVal)
+        var last = element.findViewById<TextView>(/*com.google.firebase.firestore.*/R.id.tvDescValue)
+        var age = element.findViewById<TextView>(/*com.google.firebase.firestore.*/R.id.tvDateValue)
 
         first.text = project["name"].toString()
         last.text = project["description"].toString()
