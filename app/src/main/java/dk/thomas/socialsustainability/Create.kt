@@ -3,21 +3,23 @@ package dk.thomas.socialsustainability
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.textfield.TextInputLayout
 
 class Create : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_create)
+        setContentView(R.layout.activity_create_post)
 
-        var name = findViewById<EditText>(R.id.name)
-        var description = findViewById<EditText>(R.id.description)
-        var date = findViewById<EditText>(R.id.date)
+        var title = findViewById<TextInputLayout>(R.id.inputTitle)
+        var description = findViewById<TextInputLayout>(R.id.inputDescription)
+        var date = findViewById<TextInputLayout>(R.id.inputDate)
+        var owner = findViewById<TextInputLayout>(R.id.inputOwner)
+        var email = findViewById<TextInputLayout>(R.id.inputEmail)
 
-        val upload = findViewById<Button>(R.id.btnUploadData)
+        val upload = findViewById<Button>(R.id.saveButton)
         upload.setOnClickListener {
-            var newProject = Project(name.text.toString() ,description.text.toString(), date.text.toString())
+            var newProject = Project(title.editText?.text.toString(), date.editText?.text.toString(), description.editText?.text.toString(), owner.editText?.text.toString(), email.editText?.text.toString())
             uploadData("Project", newProject)//
             val i = Intent(this, Feed::class.java)
             startActivity(i)

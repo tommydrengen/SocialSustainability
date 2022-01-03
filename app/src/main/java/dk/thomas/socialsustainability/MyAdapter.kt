@@ -7,15 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class MyAdapter(private val projectList:ArrayList<Project>): RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+    var onItemClick: ((Project) -> Unit)? = null
 
-  /*  private lateinit var mListener : onItemClickLickListener
-
-    interface onItemClickLickListener{fun onItemClick(position: Int)}
-
-    fun setOnItemClickListener(listener: onItemClickLickListener){
-        mListener = listener
-
-    }*/
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
@@ -24,26 +17,30 @@ class MyAdapter(private val projectList:ArrayList<Project>): RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val project: Project = projectList[position]
-        holder.name.text = project.name
+        holder.title.text = project.title
         holder.description.text = project.description
         holder.date.text = project.date.toString()
+        //holder.owner.text = project.title
+        //holder.email.text = project.email
     }
 
     override fun getItemCount(): Int {
         return  projectList.size
     }
 
-    public class MyViewHolder(itemView: View,/* listener: onItemClickLickListener*/):RecyclerView.ViewHolder(itemView){
-        val name: TextView = itemView.findViewById(R.id.tvNameValue)
-        val description: TextView = itemView.findViewById(R.id.tvDescValue)
-        val date: TextView = itemView.findViewById(R.id.tvDateValue)
+    inner class MyViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
+        val title: TextView = itemView.findViewById(R.id.titleCard)
+        val description: TextView = itemView.findViewById(R.id.descriptionCard)
+        val date: TextView = itemView.findViewById(R.id.dateCard)
+        //val owner : TextView = itemView.findViewById(R.id.ownerCard)
+        //val email: TextView = itemView.findViewById(R.id.emailCard)
 
-        /*init {
+        init {
             itemView.setOnClickListener {
-                listener.onItemClick(adapterPosition)
+                onItemClick?.invoke(projectList[adapterPosition])
             }
+        }
 
-        }*/
 
     }
 }
