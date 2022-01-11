@@ -13,7 +13,7 @@ import com.google.firebase.firestore.*
 import com.google.firebase.firestore.Query
 
 
-class Feed : AppCompatActivity() {
+class Feed : AppCompatActivity() /*, AdapterView.OnItemClickListener*/ {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var projectArrayList: ArrayList<Project>
@@ -28,13 +28,14 @@ class Feed : AppCompatActivity() {
         recyclerView = findViewById(R.id.feedRecycler)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
-        adapter = MyAdapter(projectArrayList)
+        adapter = MyAdapter(projectArrayList){
+            switchScreen(it)
+        }
         recyclerView.adapter = adapter
 
         val buttonCreateActivity = findViewById<ImageButton>(R.id.btnCreateActivity)
         buttonCreateActivity.setOnClickListener { startActivity(Intent(this, Create::class.java)) }
         EventChangeListener()
-        //for (i in 1..10){projectArrayList.add(Project("a"+i,"a"+i, ""+1+i))}
     }
 
     private fun readData(projectArrayList: ArrayList<Project>) {
@@ -65,7 +66,9 @@ class Feed : AppCompatActivity() {
                             val project = projectSnapshot.getValue(Project::class.java)
                             projectArrayList.add(project!!)
                         }
-                        recyclerView.adapter = MyAdapter(projectArrayList)
+                        recyclerView.adapter = MyAdapter(projectArrayList){
+                            switchScreen(it)
+                        }
                     }
                 }
 
@@ -97,4 +100,28 @@ class Feed : AppCompatActivity() {
         })
     }
 
+
+    private fun switchScreen(index: Int){
+        // i stedet
+        Toast.makeText(applicationContext, "index : "+index, Toast.LENGTH_SHORT).show()
+        val project = projectArrayList[index]
+        val value: String = project.toString()
+        val intent = Intent(this, ViewProject::class.java)
+        val title = project.title
+        val date = project.date
+        val description = project.description
+        val owner = project.owner
+        val email = project.email
+        intent.putExtra("title", project.title)
+        intent.putExtra("date", project.date)
+        intent.putExtra("description", project.description)
+        intent.putExtra("owner", project.owner)
+        intent.putExtra("email", project.email)
+        //intent.putParcelableArrayListExtra(project.title, null)
+
+        //val bundle: Bundle? = intent.extras
+        //val string: String? = intent.getStringExtra(title)
+        //val myArray: ArrayList<String>? = intent.getStringArrayListExtra("projectArrayList")
+        startActivity(intent)
+    }
 }

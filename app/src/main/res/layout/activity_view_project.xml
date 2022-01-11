@@ -109,7 +109,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/descriptiontv" />
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/emailtv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -119,7 +119,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/ownertv" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/datetv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
