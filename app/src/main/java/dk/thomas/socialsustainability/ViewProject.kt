@@ -1,8 +1,10 @@
 package dk.thomas.socialsustainability
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ViewProject : AppCompatActivity() {
 
@@ -33,6 +35,15 @@ class ViewProject : AppCompatActivity() {
         ownerTv.text = owner
         emailTv.text = email
 
+        val editFab = findViewById<FloatingActionButton>(R.id.editFab)
+        editFab.setOnClickListener { val intent2 = Intent(this,Edit::class.java)
+            intent2.putExtra("title", title)
+            intent2.putExtra("date", date)
+            intent2.putExtra("description", description)
+            intent2.putExtra("owner", owner)
+            intent2.putExtra("email", email)
+            startActivity(intent2)
+        }
 
 
 

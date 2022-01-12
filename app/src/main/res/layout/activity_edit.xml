@@ -46,6 +46,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/eeditTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="none|textPersonName|textCapSentences" />
@@ -63,6 +64,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/editTitle">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/eeditDescription"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textLongMessage|textMultiLine|textCapSentences" />
@@ -80,6 +82,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/editDescription">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/eeditDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -96,6 +99,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/editDate">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/eeditOwner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textShortMessage|textPersonName|textCapSentences" />
@@ -114,6 +118,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/editOwner">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/eeditEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textCapSentences|textEmailAddress" />

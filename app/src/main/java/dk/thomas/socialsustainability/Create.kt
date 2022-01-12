@@ -11,13 +11,13 @@ class Create : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_post)
 
-        var title = findViewById<TextInputLayout>(R.id.inputTitle)
-        var description = findViewById<TextInputLayout>(R.id.inputDescription)
-        var date = findViewById<TextInputLayout>(R.id.inputDate)
-        var owner = findViewById<TextInputLayout>(R.id.inputOwner)
-        var email = findViewById<TextInputLayout>(R.id.inputEmail)
+        var title = findViewById<TextInputLayout>(R.id.editTitle)
+        var description = findViewById<TextInputLayout>(R.id.editDescription)
+        var date = findViewById<TextInputLayout>(R.id.editDate)
+        var owner = findViewById<TextInputLayout>(R.id.editOwner)
+        var email = findViewById<TextInputLayout>(R.id.editEmail)
 
-        val upload = findViewById<Button>(R.id.saveButton)
+        val upload = findViewById<Button>(R.id.saveeEditButton)
         upload.setOnClickListener {
             var newProject = Project(title.editText?.text.toString(), date.editText?.text.toString(), description.editText?.text.toString(), owner.editText?.text.toString(), email.editText?.text.toString())
             uploadData("Project", newProject)//
