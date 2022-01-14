@@ -1,10 +1,13 @@
 package dk.thomas.socialsustainability
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.firestore.FirebaseFirestore
 
 class ViewProject : AppCompatActivity() {
 
@@ -23,25 +26,33 @@ class ViewProject : AppCompatActivity() {
         ownerTv = findViewById(R.id.ownertv)
         emailTv = findViewById(R.id.emailtv)
 
-        val title: String? = intent.getStringExtra("title")
-        val date: String? = intent.getStringExtra("date")
-        val description: String? = intent.getStringExtra("description")
-        val owner: String? = intent.getStringExtra("owner")
-        val email: String? = intent.getStringExtra("email")
+        val id: String? = intent.getStringExtra("id")
 
-        titleTv.text = title
-        dateTv.text = date
-        descriptionTv.text = description
-        ownerTv.text = owner
-        emailTv.text = email
+        //val projectId = FirebaseFirestore.getInstance().collection("Project").document(id!!).get("title")
+        val projectRef = FirebaseFirestore.getInstance().collection("Project").document(id!!)
+        projectRef.get()
+            .addOnSuccessListener {document ->
+                if (document != null){
+                    titleTv.text = document.get("title").toString()
+                    dateTv.text = document.get("date").toString()
+                    descriptionTv.text = document.get("description").toString()
+                    ownerTv.text = document.get("owner").toString()
+                    emailTv.text = document.get("email").toString()
+
+                    Log.d(TAG,"Succes" )
+                }
+                else{
+                    Log.d(TAG, "Failed")
+                }
+            }
+            .addOnFailureListener {exception ->
+                Log.d(TAG,"Failed with " + exception)
+            }
 
         val editFab = findViewById<FloatingActionButton>(R.id.editFab)
         editFab.setOnClickListener { val intent2 = Intent(this,Edit::class.java)
-            intent2.putExtra("title", title)
-            intent2.putExtra("date", date)
-            intent2.putExtra("description", description)
-            intent2.putExtra("owner", owner)
-            intent2.putExtra("email", email)
+            intent2.putExtra("id", id)
+
             startActivity(intent2)
         }
 
