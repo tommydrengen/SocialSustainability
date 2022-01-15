@@ -1,6 +1,7 @@
 package dk.thomas.socialsustainability
 
 import android.content.ContentValues
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -73,6 +74,10 @@ class Edit : AppCompatActivity() {
             "title" to project.title!!
         )
         dbRef.document(id!!).update(update)
+            .addOnSuccessListener {
+                val intent = Intent(this, Feed::class.java)
+                startActivity(intent)
+            }
         //dbRef.document(id!!).set(project)
         /*dbRef.document(id!!).update(mapOf(
             "date" to project.date,
