@@ -71,7 +71,11 @@ class Edit : AppCompatActivity() {
 
 
         var update = hashMapOf<String,Any>(
-            "title" to project.title!!
+            "title" to project.title!!,
+            "description" to project.description!!,
+            "date" to project.date!!,
+            "owner" to project.owner!!,
+            "email" to project.email!!
         )
         dbRef.document(id!!).update(update)
             .addOnSuccessListener {

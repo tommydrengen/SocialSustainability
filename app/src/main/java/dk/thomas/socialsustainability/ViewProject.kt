@@ -5,8 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.FirebaseFirestore
 
 class ViewProject : AppCompatActivity() {
@@ -16,6 +18,7 @@ class ViewProject : AppCompatActivity() {
     private lateinit var descriptionTv: TextView
     private lateinit var ownerTv: TextView
     private lateinit var emailTv: TextView
+    private lateinit var database: DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_project)
@@ -27,8 +30,6 @@ class ViewProject : AppCompatActivity() {
         emailTv = findViewById(R.id.emailtv)
 
         val id: String? = intent.getStringExtra("id")
-
-        //val projectId = FirebaseFirestore.getInstance().collection("Project").document(id!!).get("title")
         val projectRef = FirebaseFirestore.getInstance().collection("Project").document(id!!)
         projectRef.get()
             .addOnSuccessListener {document ->
@@ -56,8 +57,30 @@ class ViewProject : AppCompatActivity() {
             startActivity(intent2)
         }
 
+        val deleteFab = findViewById<FloatingActionButton>(R.id.deleteFab)
+        deleteFab.setOnClickListener {
+            val intent3 = Intent(this, Feed::class.java)
+            intent3.putExtra("id", id)
+        if(id.isNotEmpty()){
+               deleteData(id, intent3)
+           }
+            //startActivity(intent3)
+        }
+    }
 
-
+    private fun deleteData(id: String, intent: Intent) {
+        val projectRef = FirebaseFirestore.getInstance().collection("Project")
+        projectRef.document(id).delete().addOnSuccessListener {
+            Toast.makeText(this, "Successfully deleted", Toast.LENGTH_SHORT).show()
+            startActivity(intent)
+        }.addOnFailureListener {
+            Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+        }
+        /*database.child(id).remove().addOnSuccessListener {
+            Toast.makeText(this, "Successfully deleted", Toast.LENGTH_SHORT).show()
+        }.addOnFailureListener {
+            Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
+        }*/
 
     }
 }
